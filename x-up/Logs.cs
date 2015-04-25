@@ -7,35 +7,19 @@ using System.Linq;
 
 namespace x_up
 {
-    class Logs
+    public class Logs
     {
-        public static int xCoutner = 0;
-        public static int lastLine = 0;
+        private int lastLine;
+        private DirectoryInfo dirInfo;
+        private List<FileInfo> fleetLogList;
+        private FileInfo fleetLog;
 
-        private static DirectoryInfo dirInfo;
-
-        private static List<FileInfo> fleetLogList;
-        private static FileInfo fleetLog;
-        private static bool fileLock = false;
-
-
-        public static void getLatestFleetLog()
+        public string ReadLog()
         {
-            dirInfo = new DirectoryInfo(Configuration.logDir);
+            GetLatestFleetLog();
 
-            fleetLogList = new List<FileInfo>(dirInfo.GetFiles("Fleet_*"));
-            fleetLogList.OrderBy(x => x.CreationTime).ToList<FileInfo>();
-            fleetLog = fleetLogList.Last<FileInfo>();
-
-            readLog();
-
-            Form1.label2.text = xCoutner;
-
-        }
-
-        public static void readLog()
-        {
-      
+            int count = 0;
+            
             using(StreamReader log = new StreamReader(Path.Combine(Configuration.logDir, fleetLog.Name)))
             {
                 string logLine;
@@ -54,18 +38,23 @@ namespace x_up
 
                         if (logLine == Configuration.searchString)
                         {
-                            xCoutner++;
+                            count++;
                         }
 
                         lastLine = lineNum;
                     }                    
                 }
-
-                
             }
 
-
+            return count.ToString();
         }
 
+        private void GetLatestFleetLog()
+        {
+            dirInfo = new DirectoryInfo(Configuration.logDir);
+            fleetLogList = new List<FileInfo>(dirInfo.GetFiles("Fleet_*"));
+            fleetLogList.OrderBy(x => x.CreationTime).ToList<FileInfo>();
+            fleetLog = fleetLogList.Last<FileInfo>();
+        }
     }
 }

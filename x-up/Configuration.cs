@@ -9,8 +9,7 @@ namespace x_up
     {
         
         public static int refreshFrequency = 6000;
-        public static string logDir = System.IO.Path.Combine(
-            Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "EVE", "logs", "Chatlogs");
+        public static string logDir = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "EVE", "logs", "Chatlogs");
 
         public static string searchString = "x";
     }
