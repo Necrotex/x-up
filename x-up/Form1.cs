@@ -20,15 +20,16 @@ namespace x_up
             InitializeComponent();
 
             log = new Logs();
+            log.refresh();
             Timer MyTimer = new Timer();
-            MyTimer.Interval = 50;
+            MyTimer.Interval = 1000;
             MyTimer.Tick += new EventHandler(MyTimer_Tick);
             MyTimer.Start();
         }
 
         private void MyTimer_Tick(object sender, EventArgs e)
         {
-            Task.Factory.StartNew(() =>this.Invoke((new MethodInvoker(() => label2.Text = log.ReadLog()))));
+            Task.Factory.StartNew(() =>this.Invoke((new MethodInvoker(() => label1.Text = log.ReadLog()))));
         }
 
         private void label2_MouseDown(object sender, MouseEventArgs e)
@@ -37,6 +38,20 @@ namespace x_up
             {
                 ReleaseCapture();
                 SendMessage(Handle, WM_NCLBUTTONDOWN, HTCAPTION, 0);
+            }
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void label1_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                log.refresh();
+                label1.Text = "0"; 
             }
         }
     }

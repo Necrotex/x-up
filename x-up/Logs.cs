@@ -10,17 +10,26 @@ namespace x_up
     public class Logs
     {
         private int lastLine;
-        private DirectoryInfo dirInfo;
+
         private List<FileInfo> fleetLogList;
         private FileInfo fleetLog;
 
+        private int xCounter;
+        private bool firstRun = true;
+        private bool fileLock = false;
+
         public string ReadLog()
         {
-            GetLatestFleetLog();
 
-            int count = 0;
-            
-            using(StreamReader log = new StreamReader(Path.Combine(Configuration.logDir, fleetLog.Name)))
+            if (fileLock)
+                return xCounter.ToString();
+
+            fileLock = true;
+
+            string path = Path.Combine(Configuration.logDir, fleetLog.Name);
+
+            using (var fs = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))      
+            using(StreamReader log = new StreamReader(fs))
             {
                 string logLine;
                 int lineNum = 0;
@@ -29,8 +38,8 @@ namespace x_up
                 {
                     lineNum++;
 
-                    // Magic number 13: The first 13 lines of a log are only meta data.
-                    if (lineNum <= 13) continue;
+                    // Magic number 12: The first 13 lines of a log are only meta data.
+                    if (lineNum <= 12) continue;
 
                     if (lineNum > lastLine)
                     {
@@ -38,7 +47,8 @@ namespace x_up
 
                         if (logLine == Configuration.searchString)
                         {
-                            count++;
+                            if(! firstRun)
+                                xCounter++;
                         }
 
                         lastLine = lineNum;
@@ -46,15 +56,26 @@ namespace x_up
                 }
             }
 
-            return count.ToString();
+            if (firstRun) firstRun = false;
+            fileLock = false;
+
+            return xCounter.ToString();
         }
 
         private void GetLatestFleetLog()
         {
-            dirInfo = new DirectoryInfo(Configuration.logDir);
+            DirectoryInfo dirInfo = new DirectoryInfo(Configuration.logDir);
             fleetLogList = new List<FileInfo>(dirInfo.GetFiles("Fleet_*"));
             fleetLogList.OrderBy(x => x.CreationTime).ToList<FileInfo>();
             fleetLog = fleetLogList.Last<FileInfo>();
+            
+            Debug.WriteLine(fleetLog.Name);
+        }
+
+        public void refresh()
+        {
+            xCounter = 0;
+            GetLatestFleetLog();
         }
     }
 }
