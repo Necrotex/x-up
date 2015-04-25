@@ -2,10 +2,11 @@
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Diagnostics;
 
 namespace x_up
 {
-    public partial class Form1 : Form
+    public partial class CounterForm : Form
     {
         public const int WM_NCLBUTTONDOWN = 0xA1;
         public const int HTCAPTION = 0x2;
@@ -15,19 +16,37 @@ namespace x_up
         public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
         private Logs log;
 
-        public Form1()
+        private Timer timer;
+
+        public CounterForm()
         {
             InitializeComponent();
 
             log = new Logs();
+
+            if (!log.checkConfig())
+            {
+                new ConfigPathForm().ShowDialog();
+            }
+
             log.refresh();
-            Timer MyTimer = new Timer();
-            MyTimer.Interval = 1000;
-            MyTimer.Tick += new EventHandler(MyTimer_Tick);
-            MyTimer.Start();
+            startTask();
         }
 
-        private void MyTimer_Tick(object sender, EventArgs e)
+        public void startTask()
+        {
+            timer = new Timer();
+            timer.Interval = Configuration.interval;
+            timer.Tick += new EventHandler(updateCounter);
+            timer.Start();
+        }
+
+        public void stopTask()
+        {
+            timer.Stop();
+        }
+
+        private void updateCounter(object sender, EventArgs e)
         {
             Task.Factory.StartNew(() =>this.Invoke((new MethodInvoker(() => label1.Text = log.ReadLog()))));
         }
@@ -41,18 +60,28 @@ namespace x_up
             }
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-           
-        }
-
         private void label1_MouseClick(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Right)
             {
+                stopTask();
                 log.refresh();
-                label1.Text = "0"; 
+                label1.Text = "0";
+                startTask();
             }
+        }
+
+
+        private void label1_MouseDoubleClick(object sender, EventArgs e)
+        {
+                stopTask();
+                new SearchForm().ShowDialog();
+                startTask();
+        }
+
+        private void label1_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+
         }
     }
 }

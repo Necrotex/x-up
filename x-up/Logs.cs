@@ -45,7 +45,7 @@ namespace x_up
                     {
                         logLine = logLine.Remove(0, logLine.IndexOf(">") + 2);
 
-                        if (logLine == Configuration.searchString)
+                        if (logLine == Configuration.searchString || logLine == Configuration.searchString.ToLower() || logLine == Configuration.searchString.ToUpper())
                         {
                             if(! firstRun)
                                 xCounter++;
@@ -64,7 +64,9 @@ namespace x_up
 
         private void GetLatestFleetLog()
         {
+     
             DirectoryInfo dirInfo = new DirectoryInfo(Configuration.logDir);
+
             fleetLogList = new List<FileInfo>(dirInfo.GetFiles("Fleet_*"));
             fleetLogList.OrderBy(x => x.CreationTime).ToList<FileInfo>();
             fleetLog = fleetLogList.Last<FileInfo>();
@@ -76,6 +78,17 @@ namespace x_up
         {
             xCounter = 0;
             GetLatestFleetLog();
+        }
+
+        public bool checkConfig()
+        {
+            DirectoryInfo dirInfo = new DirectoryInfo(Configuration.logDir);
+
+            if (!dirInfo.Exists)
+            {
+                return false;
+            }
+            return true;
         }
     }
 }

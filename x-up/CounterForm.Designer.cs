@@ -1,6 +1,6 @@
 ﻿namespace x_up
 {
-    partial class Form1
+    partial class CounterForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CounterForm));
             this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -43,10 +43,11 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "0";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label1.DoubleClick += new System.EventHandler(this.label1_MouseDoubleClick);
             this.label1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.label1_MouseClick);
             this.label1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.label2_MouseDown);
             // 
-            // Form1
+            // CounterForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -55,7 +56,7 @@
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "Form1";
+            this.Name = "CounterForm";
             this.Opacity = 0.6D;
             this.Text = "Form1";
             this.TopMost = true;
