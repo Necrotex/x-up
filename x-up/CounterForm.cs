@@ -51,7 +51,7 @@ namespace x_up
             Task.Factory.StartNew(() =>this.Invoke((new MethodInvoker(() => label1.Text = log.ReadLog()))));
         }
 
-        private void label2_MouseDown(object sender, MouseEventArgs e)
+        private void label1_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
             {
