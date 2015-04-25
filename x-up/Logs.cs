@@ -10,19 +10,23 @@ namespace x_up
     public class Logs
     {
         private int lastLine;
-
         private List<FileInfo> fleetLogList;
         private FileInfo fleetLog;
-
         private int xCounter;
-        private bool firstRun = true;
-        private bool fileLock = false;
+        private bool firstRun;
+        private bool fileLock;
+        
+        public Logs()
+        {
+            firstRun = true;
+        }
 
         public string ReadLog()
         {
-
             if (fileLock)
+            {
                 return xCounter.ToString();
+            }
 
             fileLock = true;
 
@@ -47,8 +51,10 @@ namespace x_up
 
                         if (logLine == Configuration.searchString)
                         {
-                            if(! firstRun)
+                            if(!firstRun)
+                            {
                                 xCounter++;
+                            }
                         }
 
                         lastLine = lineNum;
@@ -56,12 +62,18 @@ namespace x_up
                 }
             }
 
-            if (firstRun) firstRun = false;
+            firstRun = !firstRun;
             fileLock = false;
 
             return xCounter.ToString();
         }
-
+        
+        public void refresh()
+        {
+            xCounter = 0;
+            GetLatestFleetLog();
+        }
+        
         private void GetLatestFleetLog()
         {
             DirectoryInfo dirInfo = new DirectoryInfo(Configuration.logDir);
@@ -70,12 +82,6 @@ namespace x_up
             fleetLog = fleetLogList.Last<FileInfo>();
             
             Debug.WriteLine(fleetLog.Name);
-        }
-
-        public void refresh()
-        {
-            xCounter = 0;
-            GetLatestFleetLog();
         }
     }
 }
