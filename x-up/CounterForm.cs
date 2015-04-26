@@ -14,8 +14,8 @@ namespace x_up
         public static extern bool ReleaseCapture();
         [DllImport("User32.dll")]
         public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+        
         private Logs log;
-
         private Timer timer;
 
         public CounterForm()
@@ -71,17 +71,14 @@ namespace x_up
             }
         }
 
-
-        private void label1_MouseDoubleClick(object sender, EventArgs e)
+        private void label1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
+            if (e.Button == MouseButtons.Right)
+            {
                 stopTask();
                 new SearchForm().ShowDialog();
                 startTask();
-        }
-
-        private void label1_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-
+            }
         }
     }
 }
