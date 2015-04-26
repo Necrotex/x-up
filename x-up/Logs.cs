@@ -28,6 +28,8 @@ namespace x_up
 
             string path = Path.Combine(Configuration.logDir, fleetLog.Name);
 
+            Debug.WriteLine(path);
+
             using (var fs = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))      
             using(StreamReader log = new StreamReader(fs))
             {
@@ -97,6 +99,8 @@ namespace x_up
         {
             xCounter = 0;
             GetLatestFleetLog();
+            lastLine = 0;
+            firstRun = true;
         }
 
         public bool checkConfig()
