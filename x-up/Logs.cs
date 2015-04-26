@@ -67,10 +67,17 @@ namespace x_up
      
             DirectoryInfo dirInfo = new DirectoryInfo(Configuration.logDir);
 
-            fleetLogList = new List<FileInfo>(dirInfo.GetFiles("Fleet_*"));
-            fleetLogList.OrderBy(x => x.CreationTime).ToList<FileInfo>();
-            fleetLog = fleetLogList.Last<FileInfo>();
-            
+            try {
+                fleetLogList = new List<FileInfo>(dirInfo.GetFiles("Fleet_*"));
+                fleetLogList.OrderBy(x => x.CreationTime).ToList<FileInfo>();
+                fleetLog = fleetLogList.Last<FileInfo>();
+            }
+            catch (ArgumentNullException e)
+            {
+                System.Windows.Forms.MessageBox.Show("No feetlog found!", "No feetlog found!", System.Windows.Forms.MessageBoxButtons.OK);
+                Environment.Exit(0);
+            }
+
             Debug.WriteLine(fleetLog.Name);
         }
 
