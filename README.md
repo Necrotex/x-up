@@ -7,8 +7,11 @@ Simple tool for EVE Online counting x's in fleet chat.
 ### Usage
 Just start the app. Drag the window in a good position and make sure you are usign window or borderless window mode for EVE. 
 
+* Drag the window in a suitable position 
 * Right click to reset counter
-* Double Right click to open options
+* Double click to open seettings
+
+![settings](http://puu.sh/hrlJO/4cfbc8d79f.jpg)
 
 ### Requirements
 .NET 4.5
