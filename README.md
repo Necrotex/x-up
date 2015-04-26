@@ -9,7 +9,7 @@ Just start the app. Drag the window in a good position and make sure you are usi
 
 * Drag the window in a suitable position 
 * Right click to reset counter
-* Double click to open options
+* Double click to open seettings
 
 ![settings](http://puu.sh/hrlJO/4cfbc8d79f.jpg)
 
