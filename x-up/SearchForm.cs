@@ -17,6 +17,7 @@ namespace x_up
             InitializeComponent();
             search.Text = Configuration.searchString;
             interval.Text = Configuration.interval.ToString();
+            strict.Checked = Configuration.strict;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -31,6 +32,7 @@ namespace x_up
             {
                 Configuration.searchString = search.Text;
                 Configuration.interval = newInterval;
+                Configuration.strict = strict.Checked;
                 this.Close();
             }
         }

@@ -29,23 +29,22 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CounterForm));
-            this.label1 = new System.Windows.Forms.Label();
+            this.counterLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // label1
+            // counterLabel
             // 
-            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label1.Location = new System.Drawing.Point(0, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(67, 31);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "0";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.label1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.label1_MouseClick);
-            this.label1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.label1_MouseDoubleClick);
-            this.label1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.label1_MouseDown);
+            this.counterLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.counterLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.counterLabel.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.counterLabel.Location = new System.Drawing.Point(0, 0);
+            this.counterLabel.Name = "counterLabel";
+            this.counterLabel.Size = new System.Drawing.Size(67, 31);
+            this.counterLabel.TabIndex = 0;
+            this.counterLabel.Text = "0";
+            this.counterLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.counterLabel.MouseClick += new System.Windows.Forms.MouseEventHandler(this.label1_MouseClick);
+            this.counterLabel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.label1_MouseDown);
             // 
             // CounterForm
             // 
@@ -53,12 +52,12 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.ClientSize = new System.Drawing.Size(67, 31);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.counterLabel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "CounterForm";
             this.Opacity = 0.6D;
-            this.Text = "Form1";
+            this.Text = "X-UP";
             this.TopMost = true;
             this.ResumeLayout(false);
 
@@ -66,7 +65,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label counterLabel;
 
     }
 }

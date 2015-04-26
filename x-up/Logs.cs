@@ -43,14 +43,26 @@ namespace x_up
 
                     if (lineNum > lastLine)
                     {
-                        logLine = logLine.Remove(0, logLine.IndexOf(">") + 2);
+                        logLine = logLine.Remove(0, logLine.IndexOf(">") + 2).Trim();
 
-                        if (logLine == Configuration.searchString || logLine == Configuration.searchString.ToLower() || logLine == Configuration.searchString.ToUpper())
+                        if (Configuration.strict)
                         {
-                            if(! firstRun)
-                                xCounter++;
+                            if (logLine == Configuration.searchString || logLine == Configuration.searchString.ToLower() || logLine == Configuration.searchString.ToUpper())
+                            {
+                                if (!firstRun)
+                                    xCounter++;
+                            }
                         }
-
+                        else
+                        {
+                            logLine = logLine.Remove(0, logLine.IndexOf(" ") + 1).Trim();
+                            if(logLine.StartsWith(Configuration.searchString, true, null))
+                            {
+                                if(!firstRun)
+                                    xCounter++;
+                            }
+                        }
+                        
                         lastLine = lineNum;
                     }                    
                 }

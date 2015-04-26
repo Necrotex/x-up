@@ -11,5 +11,6 @@ namespace x_up
         public static int interval = 1000;
         public static string logDir = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "EVE", "logs", "Chatlogs");
         public static string searchString = "x";
+        public static bool strict = true;
     }
 }

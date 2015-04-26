@@ -34,6 +34,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.interval = new System.Windows.Forms.TextBox();
+            this.strict = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // search
@@ -54,7 +55,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(131, 94);
+            this.button1.Location = new System.Drawing.Point(131, 117);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 2;
@@ -78,11 +79,22 @@
             this.interval.Size = new System.Drawing.Size(194, 20);
             this.interval.TabIndex = 4;
             // 
+            // strict
+            // 
+            this.strict.AutoSize = true;
+            this.strict.Location = new System.Drawing.Point(15, 94);
+            this.strict.Name = "strict";
+            this.strict.Size = new System.Drawing.Size(122, 17);
+            this.strict.TabIndex = 6;
+            this.strict.Text = "Use strict matching?";
+            this.strict.UseVisualStyleBackColor = true;
+            // 
             // SearchForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(221, 127);
+            this.ClientSize = new System.Drawing.Size(218, 149);
+            this.Controls.Add(this.strict);
             this.Controls.Add(this.interval);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.button1);
@@ -91,7 +103,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "SearchForm";
-            this.Text = "SearchForm";
+            this.Text = "Settings";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -104,5 +116,6 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox interval;
+        private System.Windows.Forms.CheckBox strict;
     }
 }

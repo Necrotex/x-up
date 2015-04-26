@@ -23,6 +23,7 @@ namespace x_up
             InitializeComponent();
 
             log = new Logs();
+            timer = new Timer();
 
             if (!log.checkConfig())
             {
@@ -35,7 +36,6 @@ namespace x_up
 
         public void startTask()
         {
-            timer = new Timer();
             timer.Interval = Configuration.interval;
             timer.Tick += new EventHandler(updateCounter);
             timer.Start();
@@ -48,15 +48,22 @@ namespace x_up
 
         private void updateCounter(object sender, EventArgs e)
         {
-            Task.Factory.StartNew(() =>this.Invoke((new MethodInvoker(() => label1.Text = log.ReadLog()))));
+            Task.Factory.StartNew(() =>this.Invoke((new MethodInvoker(() => counterLabel.Text = log.ReadLog()))));
         }
 
         private void label1_MouseDown(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Left)
+            if (e.Button == MouseButtons.Left && e.Clicks == 1)
             {
                 ReleaseCapture();
                 SendMessage(Handle, WM_NCLBUTTONDOWN, HTCAPTION, 0);
+            }
+
+            if (e.Button == MouseButtons.Left && e.Clicks == 2)
+            {
+                stopTask();
+                new SearchForm().ShowDialog();
+                startTask();
             }
         }
 
@@ -66,17 +73,7 @@ namespace x_up
             {
                 stopTask();
                 log.refresh();
-                label1.Text = "0";
-                startTask();
-            }
-        }
-
-        private void label1_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Right)
-            {
-                stopTask();
-                new SearchForm().ShowDialog();
+                counterLabel.Text = "0";
                 startTask();
             }
         }
