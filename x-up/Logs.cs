@@ -55,7 +55,7 @@ namespace x_up
                         }
                         else
                         {
-                            logLine = logLine.Remove(0, logLine.IndexOf(" ") + 1).Trim();
+                            logLine = logLine.Substring(0, logLine.IndexOf(" ") + 1).Trim();
                             if(logLine.StartsWith(Configuration.searchString, true, null))
                             {
                                 if(!firstRun)
@@ -103,11 +103,7 @@ namespace x_up
         {
             DirectoryInfo dirInfo = new DirectoryInfo(Configuration.logDir);
 
-            if (!dirInfo.Exists)
-            {
-                return false;
-            }
-            return true;
+            return dirInfo.Exists;
         }
     }
 }
