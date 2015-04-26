@@ -28,8 +28,6 @@ namespace x_up
 
             string path = Path.Combine(Configuration.logDir, fleetLog.Name);
 
-            Debug.WriteLine(path);
-
             using (var fs = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))      
             using(StreamReader log = new StreamReader(fs))
             {
@@ -57,7 +55,7 @@ namespace x_up
                         }
                         else
                         {
-                            logLine = logLine.Substring(0, logLine.IndexOf(" ") + 1).Trim();
+                            //TODO: This is a bit too liberal when it comes to matching.
                             if(logLine.StartsWith(Configuration.searchString, true, null))
                             {
                                 if(!firstRun)
@@ -92,7 +90,6 @@ namespace x_up
                 Environment.Exit(0);
             }
 
-            Debug.WriteLine(fleetLog.Name);
         }
 
         public void refresh()
