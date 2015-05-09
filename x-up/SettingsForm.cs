@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace x_up
 {
-    public partial class SearchForm : Form
+    public partial class SettingsForm : Form
     {
-        public SearchForm()
+        public SettingsForm()
         {
             InitializeComponent();
             search.Text = Configuration.searchString;

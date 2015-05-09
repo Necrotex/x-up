@@ -3,6 +3,7 @@ using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
+using System.Drawing;
 
 namespace x_up
 {
@@ -58,24 +59,34 @@ namespace x_up
                 ReleaseCapture();
                 SendMessage(Handle, WM_NCLBUTTONDOWN, HTCAPTION, 0);
             }
-
-            if (e.Button == MouseButtons.Left && e.Clicks == 2)
-            {
-                stopTask();
-                new SearchForm().ShowDialog();
-                startTask();
-            }
         }
 
         private void label1_MouseClick(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Right)
             {
-                stopTask();
-                log.refresh();
-                counterLabel.Text = "0";
-                startTask();
+                contextMenu.Show(this, new Point(e.X, e.Y));
             }
+        }
+
+        private void resetToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+             stopTask();
+             log.refresh();
+             counterLabel.Text = "0";
+             startTask();
+        }
+
+        private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            stopTask();
+            new SettingsForm().ShowDialog();
+            startTask();
+        }
+
+        private void quitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

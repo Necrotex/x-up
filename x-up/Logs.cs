@@ -20,7 +20,6 @@ namespace x_up
 
         public string ReadLog()
         {
-
             if (fileLock)
                 return xCounter.ToString();
 
