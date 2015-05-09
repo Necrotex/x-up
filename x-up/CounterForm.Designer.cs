@@ -36,6 +36,7 @@
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.quitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -59,9 +60,10 @@
             this.resetToolStripMenuItem,
             this.toolStripMenuItem1,
             this.settingsToolStripMenuItem,
+            this.aboutToolStripMenuItem,
             this.quitToolStripMenuItem});
             this.contextMenu.Name = "contextMenu";
-            this.contextMenu.Size = new System.Drawing.Size(153, 98);
+            this.contextMenu.Size = new System.Drawing.Size(153, 120);
             // 
             // resetToolStripMenuItem
             // 
@@ -89,6 +91,13 @@
             this.quitToolStripMenuItem.Text = "Quit";
             this.quitToolStripMenuItem.Click += new System.EventHandler(this.quitToolStripMenuItem_Click);
             // 
+            // aboutToolStripMenuItem
+            // 
+            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.aboutToolStripMenuItem.Text = "About";
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
+            // 
             // CounterForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -115,6 +124,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem quitToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
 
     }
 }

@@ -88,5 +88,12 @@ namespace x_up
         {
             Application.Exit();
         }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            stopTask();
+            new AboutForm().ShowDialog();
+            startTask();
+        }
     }
 }

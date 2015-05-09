@@ -68,9 +68,9 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(12, 52);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(155, 13);
+            this.label2.Size = new System.Drawing.Size(158, 13);
             this.label2.TabIndex = 3;
-            this.label2.Text = "Search Interval (in milliseconds)";
+            this.label2.Text = "Refresh Interval (in milliseconds)";
             // 
             // interval
             // 
